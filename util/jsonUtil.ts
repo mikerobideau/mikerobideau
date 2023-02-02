@@ -1,0 +1,1 @@
+export const asJson = (value: any): any => JSON.parse(JSON.stringify(value));

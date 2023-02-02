@@ -1,0 +1,84 @@
+.marchMadness {
+  margin: 5rem;
+}
+
+.teamHeaderContainer {
+  display: inline-flex;
+  margin-bottom: 1rem;
+}
+
+.teamHeader {
+  line-height: 5rem;
+}
+
+.conference {
+  font-style: italic;
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.teamAutocomplete {
+  margin: 1rem 1rem 0 0;
+}
+
+.grade {
+  font-size: 1.5rem;
+  font-family: Bradley Hand, cursive;
+}
+
+.good {
+  color: green;
+  font-weight: bold;
+}
+
+.bad {
+  color: red;
+  font-weight: bold;
+}
+
+.neutral {
+  font-size: 1rem;
+}
+
+.teamLogo {
+  width: 2rem;
+  margin-right: 1rem;
+}
+
+.teamLogoLarge {
+  width: 5rem;
+  margin-right: 1rem;
+}
+
+.gameSimulator {
+  margin-bottom: 3rem;
+}
+
+.gameSimulatorFilters {
+  display: inline-flex;
+}
+
+.MuiFormLabel-root {
+  background: white;
+}
+
+.gameSimulatorTeam {
+  margin-right: 1rem;
+}
+
+.simulationResult {
+  margin-top: 1rem;
+  display: inline-flex;
+}
+
+.simulationResultText {
+  margin-right: 1rem;
+}
+
+.reportCards {
+  display: inline-flex;
+}
+
+.reportCard {
+  margin: 0 1rem;
+}
