@@ -1,11 +1,14 @@
 import Head from 'next/head'
 import { Inter } from '@next/font/google'
+
+import Home from "@/components/Home/Home";
+
 import styles from '@/styles/Home.module.css'
-import Link from "next/link";
+import React from "react";
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+export default function HomePage() {
   return (
     <>
       <Head>
@@ -15,8 +18,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-          <h1>Mike Robideau</h1>
-          <Link href="/march-madness">March Madness</Link>
+          <Home />
       </main>
     </>
   )

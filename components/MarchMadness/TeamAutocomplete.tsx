@@ -1,9 +1,12 @@
 import React, {FunctionComponent} from "react";
-import {Team} from "@/components/MarchMadness/Model";
-import styles from "@/styles/MarchMadness.module.css";
+import Image from 'next/image'
 import {Box} from "@mui/system";
 import {getLogoUrl} from "@/components/MarchMadness/teamLogos.util";
 import {Autocomplete, TextField} from "@mui/material";
+
+import {Team} from "@/components/MarchMadness/Model";
+
+import styles from "@/styles/MarchMadness.module.css";
 
 interface TeamSelectProps {
     label: string;
@@ -23,8 +26,8 @@ export const TeamAutocomplete: FunctionComponent<TeamSelectProps> = ({label, val
             getOptionLabel={option => option.team}
             sx={{ width: 300 }}
             renderOption={(props, option) => (
-                <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
-                    <img
+                <Box key={option.team} component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
+                    <Image key={option.team}
                         loading="lazy"
                         width="20"
                         src={getLogoUrl(option.team)}
@@ -34,9 +37,7 @@ export const TeamAutocomplete: FunctionComponent<TeamSelectProps> = ({label, val
                     {option.team}
                 </Box>
             )}
-            renderInput={(params) => <TextField {...params} label={label} >
-                <img className={styles.teamLogo} src={getLogoUrl(value?.team)} alt=""/>
-            </TextField>}
+            renderInput={(params) => <TextField {...params} label={label} ></TextField>}
             value={value}
             onChange={(event: any, newValue: Team | null) => onChange(newValue)}
         />

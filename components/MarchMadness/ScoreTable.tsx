@@ -1,10 +1,12 @@
-import {getOpponentStrength, sortScores} from "@/components/MarchMadness/marchMadness.util";
 import React, {FunctionComponent} from "react";
-import {Score} from "@/components/MarchMadness/Model";
-import styles from '@/styles/MarchMadness.module.css';
-
 import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
+import Image from 'next/image';
+
+import {Score} from "@/components/MarchMadness/Model";
 import {getLogoUrl} from "@/components/MarchMadness/teamLogos.util";
+import {getOpponentStrength, sortScores} from "@/components/MarchMadness/marchMadness.util";
+
+import styles from '@/styles/MarchMadness.module.css';
 
 interface ScoreTableProps {
     scores: Score[]
@@ -21,12 +23,12 @@ export const ScoreTable: FunctionComponent<ScoreTableProps> = ({scores}) => {
                         <TableCell><th>OPPONENT STRENGTH</th></TableCell>
                         <TableCell><th>EXPECTATION</th></TableCell>
                         <TableCell><th>GAME RESULT</th></TableCell>
-                        <TableCell><th>POWER SCORE (DIFFERENTIAL + SPREAD)</th></TableCell>
+                        <TableCell><th>POWER SCORE</th></TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {sortScores(scores).map((row) => (
-                        <TableRow
+                    {sortScores(scores).map((row, index) => (
+                        <TableRow key={index}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
                             <TableCell align="center"
@@ -34,7 +36,7 @@ export const ScoreTable: FunctionComponent<ScoreTableProps> = ({scores}) => {
                                 {row.grade}
                             </TableCell>
                             <TableCell component="th" scope="row">
-                                <img className={styles.teamLogo} src={getLogoUrl(row.team2)} alt=""/>
+                                <Image className={styles.teamLogo} width="20" height="20" src={getLogoUrl(row.team2)} alt=""/>
                                 {row.team2}
                             </TableCell>
                             <TableCell

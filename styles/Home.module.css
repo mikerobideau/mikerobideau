@@ -1,0 +1,71 @@
+.homePage {
+    margin: 0 10rem;
+    font-family: adobe-garamond-pro;
+}
+
+.navbar {
+    margin: 1rem 10rem;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    border-top: 1px solid #e5e3e1;
+    border-bottom: 1px solid  #e5e3e1;
+}
+
+.navLink {
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    margin-right: 2rem;
+    color: #222b81;
+}
+
+.navbarLeft {
+
+}
+
+.navbarMiddle {
+
+}
+
+.navbarRight {
+
+}
+
+.jumbotron {
+    margin: 0 auto;
+    width: 50rem;
+}
+
+.profileHeader {
+    text-align: center;
+    white-space: pre-wrap;
+    font-weight: bold;
+    color: #222b81;
+}
+
+.homepageHeader {
+    margin-bottom: 0;
+
+}
+
+.profilePicture {
+    border-radius: 50%;
+}
+
+.profile {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-around;
+}
+
+.profileText {
+    margin: 2rem 2rem;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.4rem;
+    letter-spacing: .01em;
+    line-height: 1.4em;
+    text-transform: none;
+    width: 25rem;
+}

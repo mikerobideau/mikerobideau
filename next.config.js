@@ -1,10 +1,8 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
+module.exports = {
   env: {
-    MYSQL_HOST: '127.0.0.1',
-    MYSQL_DATABASE: 'march_madness',
-    MYSQL_USER: 'root',
-    MYSQL_PASSWORD: 'password',
+    MYSQL_HOST: process.env.MYSQL_HOST,
+    MYSQL_DATABASE: process.env.MYSQL_DATABASE,
+    MYSQL_USER: process.env.MYSQL_USER,
+    MYSQL_PASSWORD: process.env.MYSQL_PASSWORD,
   }
 }

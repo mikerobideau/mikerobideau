@@ -1,13 +1,7 @@
+//@ts-nocheck
+
 import React, {FunctionComponent, useEffect, useState} from "react";
-
-import {Score, SimulationResult, Team} from "@/components/MarchMadness/Model";
-import {getOpponentStrength, getRecord} from "@/components/MarchMadness/marchMadness.util";
-import {getScores, simulate} from "@/components/MarchMadness/marchMadnessService";
-import {ScoreTable} from "@/components/MarchMadness/ScoreTable";
-
-import styles from '@/styles/MarchMadness.module.css';
-import {getLogoUrl} from "@/components/MarchMadness/teamLogos.util";
-import {TeamAutocomplete} from "@/components/MarchMadness/TeamAutocomplete";
+import Image from 'next/image';
 import {
     Checkbox,
     FormControl,
@@ -18,7 +12,15 @@ import {
     Select,
     SelectChangeEvent
 } from "@mui/material";
-import {MenuProps} from "@mui/material/Menu/Menu";
+
+import {Score, SimulationResult, Team} from "@/components/MarchMadness/Model";
+import {getFilteredScores, getRecord} from "@/components/MarchMadness/marchMadness.util";
+import {getScores, simulate} from "@/components/MarchMadness/marchMadnessService";
+import {ScoreTable} from "@/components/MarchMadness/ScoreTable";
+import {getLogoUrl} from "@/components/MarchMadness/teamLogos.util";
+import {TeamAutocomplete} from "@/components/MarchMadness/TeamAutocomplete";
+
+import styles from '@/styles/MarchMadness.module.css';
 
 
 interface MarchMadnessProps {
@@ -69,6 +71,13 @@ const MarchMadness: FunctionComponent<MarchMadnessProps> = ({defaultTeam1, defau
         }
     }
 
+    const simulateGames = async () => {
+        if (team1 && team2 && team1FilteredScores && team2FilteredScores) {
+            const result = await simulate(team1.team, team1FilteredScores, team2.team, team2FilteredScores);
+            setSimulationResult(result);
+        }
+    }
+
     useEffect(() => {
         if (team1Scores) {
             setTeam1Record(getRecord(team1Scores));
@@ -82,9 +91,9 @@ const MarchMadness: FunctionComponent<MarchMadnessProps> = ({defaultTeam1, defau
     }, [team2Scores]);
 
     useEffect(() => {
-        setTeam1FilteredScores(getFilteredScores(team1Scores));
-        setTeam2FilteredScores(getFilteredScores(team2Scores));
-    }, [selectedOpponentStrengths, team1Scores, team2Scores]);
+        setTeam1FilteredScores(getFilteredScores(team1Scores, selectedOpponentStrengths));
+        setTeam2FilteredScores(getFilteredScores(team2Scores, selectedOpponentStrengths));
+    }, [selectedOpponentStrengths, team1Scores, team2Scores, getFilteredScores]);
 
     useEffect(() => {
         (async() => {
@@ -92,28 +101,15 @@ const MarchMadness: FunctionComponent<MarchMadnessProps> = ({defaultTeam1, defau
         })();
     }, [team1FilteredScores, team2FilteredScores]);
 
-    const simulateGames = async () => {
-        if (team1 && team2 && team1FilteredScores && team2FilteredScores) {
-            const result = await simulate(team1.team, team1FilteredScores, team2.team, team2FilteredScores);
-            setSimulationResult(result);
-        }
-    }
 
     const handleOnChangeOpponentStrengths = (event: SelectChangeEvent) => {
         const {
             target: { value },
         } = event;
-        console.log(value);
         setSelectedOpponentStrengths(
             typeof value === 'string' ? value.split(',') : value,
         );
     }
-
-    const getFilteredScores = (scores: Score[]): Score[] =>
-        scores
-            ? scores.filter(score =>
-            selectedOpponentStrengths.includes(getOpponentStrength(score.precise_spread)))
-        : [];
 
     return (
         <div className={styles.marchMadness}>
@@ -125,13 +121,13 @@ const MarchMadness: FunctionComponent<MarchMadnessProps> = ({defaultTeam1, defau
                     <FormControl sx={{ m: 2, width: 300 }}>
                         <InputLabel id="demo-multiple-checkbox-label">Opponents</InputLabel>
                         <Select
-                            labelId="demo-multiple-checkbox-label"
-                            id="demo-multiple-checkbox"
                             multiple
                             value={selectedOpponentStrengths}
                             onChange={handleOnChangeOpponentStrengths}
                             input={<OutlinedInput label="Tag" />}
-                            renderValue={(selected) => selectedOpponentStrengths.join(', ')}
+                            renderValue={() => selectedOpponentStrengths.length === opponentStrengths.length
+                                ? 'All'
+                                : selectedOpponentStrengths.join(', ')}
                         >
                             {opponentStrengths.map((strength) => (
                                 <MenuItem key={strength} value={strength}>
@@ -156,24 +152,24 @@ const MarchMadness: FunctionComponent<MarchMadnessProps> = ({defaultTeam1, defau
                     <h2>{team1.team} Report Card</h2>
                     {team1Record && team1 && (<>
                         <div className={styles.teamHeaderContainer}>
-                            <img className={styles.teamLogoLarge} src={getLogoUrl(team1?.team)} alt=""/>
+                            <Image className={styles.teamLogoLarge} width="50" height="50" src={getLogoUrl(team1?.team)} alt=""/>
                             <h4 className={styles.teamHeader}>({team1Record[0]} - {team1Record[1]})</h4>
                         </div>
                     </>)}
 
-                    {team1Scores && (<ScoreTable scores={getFilteredScores(team1Scores)} />)}
+                    {team1Scores && (<ScoreTable scores={team1FilteredScores || []} />)}
                 </div>)}
 
                 {team2 && (<div className={styles.reportCard}>
                     <h2>{team2.team} Report Card</h2>
                     {team2Record && team2 && (<>
                         <div className={styles.teamHeaderContainer}>
-                            <img className={styles.teamLogoLarge} src={getLogoUrl(team2?.team)} alt=""/>
+                            <Image className={styles.teamLogoLarge} width="50" height="50" src={getLogoUrl(team2?.team)} alt=""/>
                             <h4 className={styles.teamHeader}>({team2Record[0]} - {team2Record[1]})</h4>
                         </div>
                     </>)}
 
-                    {team2Scores && (<ScoreTable scores={getFilteredScores(team2Scores)} />)}
+                    {team2Scores && (<ScoreTable scores={team2FilteredScores || []} />)}
                 </div>)}
             </div>
         </div>
