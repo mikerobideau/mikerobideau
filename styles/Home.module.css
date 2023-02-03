@@ -8,8 +8,6 @@
     display: flex;
     justify-content: space-between;
     padding: 1rem;
-    border-top: 1px solid #e5e3e1;
-    border-bottom: 1px solid  #e5e3e1;
 }
 
 .navLink {
@@ -33,23 +31,55 @@
 }
 
 .jumbotron {
-    margin: 0 auto;
-    width: 50rem;
+
+    margin: 5rem auto;
+    width: 70rem;
+}
+
+.homepageBanner {
+    display: inline-flex;
+}
+
+.homepageBannerTextContainer {
+    margin-top: 15rem;
+}
+
+.bigHeader {
+    color: #190e8e;
+    font-size: 4rem;
+}
+
+.smallHeader {
+    color: #fe766a;
+    text-align: center;
+}
+
+.colorAlternate {
+    color: #fe766a;
 }
 
 .profileHeader {
     text-align: center;
     white-space: pre-wrap;
     font-weight: bold;
-    color: #222b81;
+    color: #190e8e;
+}
+
+.profileSubheader {
+    text-align: center;
 }
 
 .homepageHeader {
     margin-bottom: 0;
+}
 
+.workSample {
+    margin: 0 auto;
+    width: 820px;
 }
 
 .profilePicture {
+    margin-top: 1rem;
     border-radius: 50%;
 }
 
@@ -60,12 +90,17 @@
 }
 
 .profileText {
-    margin: 2rem 2rem;
+    margin: 1rem 0;
     font-weight: 400;
     font-style: normal;
-    font-size: 1.4rem;
-    letter-spacing: .01em;
-    line-height: 1.4em;
-    text-transform: none;
+    font-size: 1.2rem;
     width: 25rem;
+}
+
+.skills {
+    margin: 7rem 0;
+}
+
+.skill {
+    margin: 0 3rem;
 }

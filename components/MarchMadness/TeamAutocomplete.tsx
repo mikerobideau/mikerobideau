@@ -30,8 +30,8 @@ export const TeamAutocomplete: FunctionComponent<TeamSelectProps> = ({label, val
                     <Image key={option.team}
                         loading="lazy"
                         width="20"
+                        height="20"
                         src={getLogoUrl(option.team)}
-
                         alt=""
                     />
                     {option.team}

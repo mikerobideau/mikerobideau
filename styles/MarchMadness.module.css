@@ -1,29 +1,93 @@
+
+/*Main*/
 .marchMadness {
-  margin: 0 10rem;
+  margin: 0 20rem;
+  font-family: AtlasGrotesk-Medium, "Helvetica Neue", Helvetica;
 }
 
-.teamHeaderContainer {
-  display: inline-flex;
+/*Header*/
+.marchMadnessHeader {
+  text-align: center;
+  font-family: AtlasGrotesk-Medium;
+  font-size: 2.5rem;
+}
+
+.marchMadnessSubheader {
+  text-align: center;
+  font-family: "Helvetica Neue";
+  font-size: 1.8rem;
   margin-bottom: 1rem;
 }
 
-.teamHeader {
-  line-height: 5rem;
+.marchMadnessDescription {
+  text-align: center;
+  font-family: "Helvetica Neue";
+  font-size: 1.4rem;
 }
 
-.conference {
-  font-style: italic;
-  font-size: 1.6rem;
-  margin-bottom: 0.5rem;
+.boldHeader {
+  font-weight: bold;
+  font-family: "Helvetica Neue";
 }
 
+/*Filters*/
+
+.filters {
+  margin-top: 3rem;
+  display: flex;
+  border-bottom: 1px solid black;
+}
+
+/*Dashboard*/
+
+.dashboard {
+  text-align: center;
+}
+
+.simulationResult {
+  text-align: center;
+}
+
+.winPct {
+  font-size: 3rem;
+  line-height: 10rem;
+  vertical-align: middle;
+}
+
+.team1WinPct {
+
+}
+
+.team2WinPct {
+  margin-right: 18rem;
+}
+
+.team1LogoLarge {
+  margin-right: 3rem;
+  margin-left: 1rem;
+}
+
+.team2LogoLarge {
+  margin-right: 1rem;
+}
+
+/*Team Autocomplete*/
 .teamAutocomplete {
   margin: 1rem 1rem 0 0;
 }
 
+/*Score Table*/
+.scoreTables {
+  display: inline-flex;
+}
+
+.scoreTable {
+  margin: 0 2rem;
+}
+
 .grade {
-  font-size: 1.5rem;
-  font-family: Bradley Hand, cursive;
+  font-size: 1.2rem;
+  margin-left: 1rem;
 }
 
 .good {
@@ -41,43 +105,6 @@
 }
 
 .teamLogo {
-  width: 2rem;
   margin-right: 1rem;
 }
 
-.teamLogoLarge {
-  margin-right: 1rem;
-}
-
-.gameSimulator {
-  margin-bottom: 3rem;
-}
-
-.gameSimulatorFilters {
-  display: inline-flex;
-}
-
-.MuiFormLabel-root {
-  background: white;
-}
-
-.gameSimulatorTeam {
-  margin-right: 1rem;
-}
-
-.simulationResult {
-  margin-top: 1rem;
-  display: inline-flex;
-}
-
-.simulationResultText {
-  margin-right: 1rem;
-}
-
-.reportCards {
-  display: inline-flex;
-}
-
-.reportCard {
-  margin: 0 1rem;
-}

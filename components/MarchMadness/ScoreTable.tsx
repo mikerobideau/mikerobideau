@@ -14,45 +14,53 @@ interface ScoreTableProps {
 
 export const ScoreTable: FunctionComponent<ScoreTableProps> = ({scores}) => {
     return (
-        <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} size="medium" aria-label="Scores">
-                <TableHead>
-                    <TableRow>
-                        <TableCell><th>GAME GRADE</th> </TableCell>
-                        <TableCell><th>OPPONENT</th></TableCell>
-                        <TableCell><th>OPPONENT STRENGTH</th></TableCell>
-                        <TableCell><th>EXPECTATION</th></TableCell>
-                        <TableCell><th>GAME RESULT</th></TableCell>
-                        <TableCell><th>POWER SCORE</th></TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {sortScores(scores).map((row, index) => (
-                        <TableRow key={index}
-                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                        >
-                            <TableCell align="center"
-                                       className={['A+', 'A', 'A-'].includes(row.grade) ? `${styles.good} ${styles.grade}` : ['F', 'D-', 'D', 'D+'].includes(row.grade) ? `${styles.bad} ${styles.grade}` : styles.grade }>
-                                {row.grade}
-                            </TableCell>
-                            <TableCell component="th" scope="row">
-                                <Image className={styles.teamLogo} width="20" height="20" src={getLogoUrl(row.team2)} alt=""/>
-                                {row.team2}
-                            </TableCell>
-                            <TableCell
-                                className={['Elite', 'Very strong', 'Strong'].includes(getOpponentStrength(row.precise_spread)) ? styles.good : ['Weak', 'Very weak', 'Extremely weak'].includes(getOpponentStrength(row.precise_spread)) ? styles.bad : styles.neutral}>
-                                {getOpponentStrength(row.precise_spread)}
-                            </TableCell>
-                            <TableCell>{row.precise_spread == 0 ? 'Even' : row.precise_spread < 0 ? `Win by ${Math.abs(row.precise_spread)}` : `Lose by ${Math.abs(row.precise_spread)}`}</TableCell>
-                            <TableCell
-                                className={row.team1_score > row.team2_score ? styles.good : styles.bad}>
-                                {row.team1_score > row.team2_score ? 'Won' : 'Lossed'} by {Math.abs(row.team1_score - row.team2_score)}
-                            </TableCell>
-                            <TableCell>{row.performance_score}</TableCell>
+        <div className={styles.scoreTable}>
+            <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 650 }} size="medium" aria-label="Scores">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell><th>TEAM</th></TableCell>
+                            <TableCell><th>OPPONENT</th></TableCell>
+                            <TableCell><th>OPPONENT STRENGTH</th></TableCell>
+                            <TableCell><th>EXPECTATION</th></TableCell>
+                            <TableCell><th>RESULT</th></TableCell>
+                            <TableCell><th>GRADE</th></TableCell>
                         </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </TableContainer>
+                    </TableHead>
+                    <TableBody>
+                        {sortScores(scores).map((row, index) => (
+                            <TableRow key={index}
+                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            >
+                                <TableCell component="th" scope="row">
+                                    <Image className={styles.teamLogo} width="40" height="40" src={getLogoUrl(row.team1)} alt=""/>
+                                    {row.team1}
+                                </TableCell>
+                                <TableCell component="th" scope="row">
+                                    <Image className={styles.teamLogo} width="40" height="40" src={getLogoUrl(row.team2)} alt=""/>
+                                    {row.team2}
+                                </TableCell>
+                                <TableCell
+                                    className={['Elite', 'Very strong', 'Strong'].includes(getOpponentStrength(row.precise_spread)) ? styles.good : ['Weak', 'Very weak', 'Extremely weak'].includes(getOpponentStrength(row.precise_spread)) ? styles.bad : styles.neutral}>
+                                    {getOpponentStrength(row.precise_spread)}
+                                </TableCell>
+                                <TableCell>{row.precise_spread == 0 ? 'Even' : row.precise_spread < 0 ? `Win by ${Math.abs(row.precise_spread).toFixed(0)}` : `Lose by ${Math.abs(row.precise_spread).toFixed(0)}`}</TableCell>
+                                <TableCell
+                                    className={row.team1_score > row.team2_score ? styles.good : styles.bad}>
+                                    {row.team1_score > row.team2_score ? 'Won' : 'Lossed'} by {Math.abs(row.team1_score - row.team2_score)}
+                                </TableCell>
+                                <TableCell align="center">
+                                        {row.performance_score.toFixed(0)}
+                                        <span
+                                            className={['A+', 'A', 'A-'].includes(row.grade) ? `${styles.good} ${styles.grade}` : ['F', 'D-', 'D', 'D+'].includes(row.grade) ? `${styles.bad} ${styles.grade}` : styles.grade }>
+                                            {row.grade}
+                                        </span>
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </div>
     )
 }
