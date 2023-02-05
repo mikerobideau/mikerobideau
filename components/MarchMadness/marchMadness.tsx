@@ -6,7 +6,7 @@ import {
     SelectChangeEvent
 } from "@mui/material";
 
-import {Score, SimulationResult, Team, Team1OrTeam2} from "@/components/MarchMadness/Model";
+import {Score, SimulationResult, Team} from "@/components/MarchMadness/Model";
 import {getFilteredScores, getRecord} from "@/components/MarchMadness/marchMadness.util";
 import {getScores, simulate} from "@/components/MarchMadness/marchMadnessService";
 import {ScoreTable} from "@/components/MarchMadness/ScoreTable";

@@ -11,7 +11,7 @@ const Home: FunctionComponent = () => {
         <div className={styles.homePage}>
             <Container>
                 <div className={styles.homepageBanner}>
-                    <h4>Hi, I'm <span className={styles.colorAlternate}>Mike</span>.  What can I help you build?</h4>
+                    <h4>Hi, I&rsquo;m <span className={styles.colorAlternate}>Mike</span>. What can I help you build?</h4>
                     <Hidden mdUp>
                         <Image src="/images/homepage_main_image2.jpg" width="300" height="300" alt="" />
                     </Hidden>
@@ -52,7 +52,7 @@ const Home: FunctionComponent = () => {
                             <Image className={styles.profilePicture} src="/images/profile_picture4.jpg" width="350" height="350" alt="" />
                         </Hidden>
                         <div>
-                            <p className={styles.profileText}>I'm a software engineer and father of two based in New York Capital Region.  I have ten years of experience building applications for companies including Morgan Stanley and Major League Baseball.</p>
+                            <p className={styles.profileText}>I&rsquo;m a software engineer and father of two based in New York Capital Region. I have ten years of experience building applications for companies including Morgan Stanley and Major League Baseball.</p>
                             <p className={styles.profileText}>My strengths are web application development, dashboards & data visualization, data transformation, analysis, and storage.</p>
                             <p className={styles.profileText}>I received my BA from the University of Vermont in 2011 and my MA from Columbia University in 2012.</p>
                         </div>
