@@ -2,20 +2,20 @@ import React, {FunctionComponent} from "react";
 import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
 import Image from 'next/image';
 
-import {Score} from "@/components/MarchMadness/Model";
-import {getLogoUrl} from "@/components/MarchMadness/teamLogos.util";
+import {Score, Team} from "@/components/MarchMadness/Model";
 import {getOpponentStrength, sortScores} from "@/components/MarchMadness/marchMadness.util";
 
 import styles from '@/styles/MarchMadness.module.css';
 
 interface ScoreTableProps {
     scores: Score[]
+    teams: Team[]
 }
 
-export const ScoreTable: FunctionComponent<ScoreTableProps> = ({scores}) => {
+export const ScoreTable: FunctionComponent<ScoreTableProps> = ({scores, teams}) => {
     return (
         <div className={styles.scoreTable}>
-            <TableContainer component={Paper}>
+            {scores && teams && (<TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} size="medium" aria-label="Scores">
                     <TableHead>
                         <TableRow>
@@ -33,11 +33,11 @@ export const ScoreTable: FunctionComponent<ScoreTableProps> = ({scores}) => {
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
                                 <TableCell component="th" scope="row">
-                                    <Image className={styles.teamLogo} width="40" height="40" src={getLogoUrl(row.team1)} alt=""/>
+                                    <Image className={styles.teamLogo} width="40" height="40" src={row.team1_logo} alt=""/>
                                     {row.team1}
                                 </TableCell>
                                 <TableCell component="th" scope="row">
-                                    <Image className={styles.teamLogo} width="40" height="40" src={getLogoUrl(row.team2)} alt=""/>
+                                    <Image className={styles.teamLogo} width="40" height="40" src={row.team2_logo} alt=""/>
                                     {row.team2}
                                 </TableCell>
                                 <TableCell
@@ -60,7 +60,7 @@ export const ScoreTable: FunctionComponent<ScoreTableProps> = ({scores}) => {
                         ))}
                     </TableBody>
                 </Table>
-            </TableContainer>
+            </TableContainer>)}
         </div>
     )
 }

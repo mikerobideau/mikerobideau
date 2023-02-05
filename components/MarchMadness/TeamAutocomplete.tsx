@@ -1,7 +1,6 @@
 import React, {FunctionComponent} from "react";
 import Image from 'next/image'
 import {Box} from "@mui/system";
-import {getLogoUrl} from "@/components/MarchMadness/teamLogos.util";
 import {Autocomplete, TextField} from "@mui/material";
 
 import {Team} from "@/components/MarchMadness/Model";
@@ -24,14 +23,14 @@ export const TeamAutocomplete: FunctionComponent<TeamSelectProps> = ({label, val
             options={teams.sort((a, b) => -b.conference.localeCompare(a.conference))}
             groupBy={option => option.conference}
             getOptionLabel={option => option.team}
-            sx={{ width: 300 }}
+            sx={{ width: 250 }}
             renderOption={(props, option) => (
                 <Box key={option.team} component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
                     <Image key={option.team}
                         loading="lazy"
                         width="20"
                         height="20"
-                        src={getLogoUrl(option.team)}
+                        src={option.logo}
                         alt=""
                     />
                     {option.team}

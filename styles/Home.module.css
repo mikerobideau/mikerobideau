@@ -1,13 +1,11 @@
 .homePage {
-    margin: 0 10rem;
     font-family: adobe-garamond-pro;
 }
 
 .navbar {
-    margin: 1rem 10rem;
+    margin: 1rem 10rem 5rem 0rem;
     display: flex;
-    justify-content: space-between;
-    padding: 1rem;
+    justify-content: right;
 }
 
 .navLink {
@@ -16,6 +14,7 @@
     color: black;
     margin-right: 2rem;
     color: #222b81;
+    font-size: 0.8rem;
 }
 
 .navbarLeft {
@@ -30,28 +29,32 @@
 
 }
 
-.jumbotron {
-
-    margin: 5rem auto;
-    width: 70rem;
+.homepageBanner {
+    text-align: center;
 }
 
-.homepageBanner {
+.homepageBannerInner {
     display: inline-flex;
 }
 
 .homepageBannerTextContainer {
-    margin-top: 15rem;
+    margin-bottom: 7rem;
+}
+
+.bannerTextSmall {
+    font-size: 1.4rem;
 }
 
 .bigHeader {
     color: #190e8e;
     font-size: 4rem;
+    font-family: AtlasGrotesk-Medium
 }
 
 .smallHeader {
     color: #fe766a;
     text-align: center;
+    font-family: AtlasGrotesk-Medium
 }
 
 .colorAlternate {
@@ -74,19 +77,19 @@
 }
 
 .workSample {
-    margin: 0 auto;
-    width: 820px;
+    margin-top: 3rem;
+}
+
+.workSampleLink {
+    text-align: center;
+}
+
+.aboutMe {
+    margin: 6rem 2rem;
 }
 
 .profilePicture {
-    margin-top: 1rem;
     border-radius: 50%;
-}
-
-.profile {
-    margin-top: 2rem;
-    display: flex;
-    justify-content: space-around;
 }
 
 .profileText {
@@ -95,12 +98,14 @@
     font-style: normal;
     font-size: 1.2rem;
     width: 25rem;
+    padding: 0 2rem;
 }
 
 .skills {
     margin: 7rem 0;
+    text-align: center;
 }
 
 .skill {
-    margin: 0 3rem;
+    margin: 0 1rem;
 }

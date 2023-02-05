@@ -1,34 +1,39 @@
 import {FunctionComponent} from "react";
 import Image from 'next/image';
 
-import {SimulationResult} from "@/components/MarchMadness/Model";
-
-import {getLogoUrl} from "@/components/MarchMadness/teamLogos.util";
+import {SimulationResult, Team} from "@/components/MarchMadness/Model";
 
 import styles from '@/styles/MarchMadness.module.css';
+import {Container} from "@mui/material";
 
 interface DashboardProps {
+    team1: Team;
+    team2: Team;
     simulationResult: SimulationResult | null | undefined;
 }
 
-export const Dashboard: FunctionComponent<DashboardProps> = ({simulationResult}) => {
-    return simulationResult ? (
-        <div className={styles.dashboard}>
+export const Dashboard: FunctionComponent<DashboardProps> = ({team1, team2, simulationResult}) => {
+    console.log(team1);
 
-            <span className={`${styles.winPct} ${styles.team1WinPct}`}>{simulationResult.team1WinPct}</span>
-            <Image className={styles.team1LogoLarge}
-                   width="100"
-                   height="100"
-                   src={getLogoUrl(simulationResult.team1)}
-                   alt=""/>
-            <Image className={styles.team2LogoLarge}
-                   width="100"
-                   height="100"
-                   src={getLogoUrl(simulationResult.team2)}
-                   alt=""/>
-            <span className={`${styles.winPct} ${styles.team2WinPct}`}>{simulationResult.team2WinPct}</span>
-        </div>
-    ) : <div className={styles.dashboard} />
+    return simulationResult ? (
+        <Container>
+            <div className={styles.dashboardContent}>
+                <span className={styles.winPct}>{simulationResult.team1WinPct}</span>
+                <Image className={styles.teamLogoLarge}
+                       width="100"
+                       height="100"
+                       src={team1.logo}
+                       alt=""/>
+                <span className={styles.vs}>vs</span>
+                <Image className={styles.teamLogoLarge}
+                       width="100"
+                       height="100"
+                       src={team2.logo}
+                       alt=""/>
+                <span className={styles.winPct}>{simulationResult.team2WinPct}</span>
+            </div>
+        </Container>
+    ) : <div />
 }
 
 /*

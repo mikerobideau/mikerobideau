@@ -1,7 +1,7 @@
 
 /*Main*/
 .marchMadness {
-  margin: 0 20rem;
+  padding: 0 2rem;
   font-family: AtlasGrotesk-Medium, "Helvetica Neue", Helvetica;
 }
 
@@ -40,11 +40,8 @@
 
 /*Dashboard*/
 
-.dashboard {
-  text-align: center;
-}
 
-.simulationResult {
+.dashboardContent {
   text-align: center;
 }
 
@@ -54,21 +51,12 @@
   vertical-align: middle;
 }
 
-.team1WinPct {
-
+.vs {
+  font-size: 1.6rem;
 }
 
-.team2WinPct {
-  margin-right: 18rem;
-}
-
-.team1LogoLarge {
-  margin-right: 3rem;
-  margin-left: 1rem;
-}
-
-.team2LogoLarge {
-  margin-right: 1rem;
+.teamLogoLarge {
+  padding: 0 1rem;
 }
 
 /*Team Autocomplete*/
@@ -82,7 +70,7 @@
 }
 
 .scoreTable {
-  margin: 0 2rem;
+  margin: 1rem 0;
 }
 
 .grade {

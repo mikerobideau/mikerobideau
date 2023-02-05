@@ -38,8 +38,8 @@ export const sortScores = (scores: Score[]) => scores.sort((a: Score, b: Score) 
     }
 });
 
-export const getTeam = (teamName: string | null, teams: Team[]): Team | undefined =>
-    teams.find((team: Team) => team.team === teamName);
+export const getTeam = (teamName: string | null | undefined, teams: Team[]): Team | undefined =>
+    teams?.find((team: Team) => team.team === teamName)
 
 export const getFilteredScores = (scores: Score[] | undefined, selectedOpponentStrengths: string[]): Score[] =>
     scores

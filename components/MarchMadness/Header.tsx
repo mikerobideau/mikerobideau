@@ -1,10 +1,11 @@
 import React, {FunctionComponent} from "react";
+import {Container} from "@mui/material";
 
 import styles from '@/styles/MarchMadness.module.css';
 
 const Header: FunctionComponent = () => {
     return (
-        <div>
+        <Container>
             <h1 className={styles.marchMadnessHeader}>2022-2023 March Madness Dashboard</h1>
             <h2 className={styles.marchMadnessSubheader}>Simulate Head-to-Head Matchups and Browse Regular Season Game Grades</h2>
             <h2 className={styles.marchMadnessDescription}>
@@ -13,7 +14,7 @@ const Header: FunctionComponent = () => {
             <h2 className={styles.marchMadnessDescription}>
                 <span className={styles.boldHeader}>Grades:</span>&nbsp;Adjusted for scoring differential and strength of opponent.
             </h2>
-        </div>
+        </Container>
     )
 }
 
