@@ -11,12 +11,10 @@ const Header: FunctionComponent = () => {
                 <h2 className={styles.marchMadnessSubheader}>Simulate Matchups and Browse Game Grades</h2>
                 <h2 className={styles.marchMadnessDescription}>
                     <div className={styles.descriptionContainer}>
-                        <span className={styles.boldHeader}>Grades</span>
-                        <span>&nbsp;are scored by strength of opponent and margin of victory.</span>
+                        <span>&nbsp;Grades are scored by strength of opponent and margin of victory.</span>
                     </div>
                     <div className={styles.descriptionContainer}>
-                        <span className={styles.boldHeader}>&nbsp;Win probabilities</span>
-                        <span>&nbsp;update when filters change.</span>
+                        <span>&nbsp;Win probabilities and grades update when filters change.</span>
                     </div>
                 </h2>
             </div>
