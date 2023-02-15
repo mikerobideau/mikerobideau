@@ -40,35 +40,38 @@ export const Filters: FunctionComponent<FilterProps> = ({
     return (
         <Container>
             <div className={styles.filters}>
-                <Grid container spacing="2">
-                    <Grid item >
-                        <TeamAutocomplete label="Team 1" value={team1} onChange={onChangeTeam1} teams={teams} />
+                <h4 className={styles.filtersHeader}>FILTERS</h4>
+                <div className={styles.filtersInner}>
+                    <Grid container spacing="2">
+                        <Grid item >
+                            <TeamAutocomplete label="Team 1" value={team1} onChange={onChangeTeam1} teams={teams} />
+                        </Grid>
+                        <Grid item>
+                            <TeamAutocomplete label="Team 2" value={team2} onChange={onChangeTeam2} teams={teams} />
+                        </Grid>
+                        <Grid item>
+                            <FormControl sx={{ m: 2, width: 150 }}>
+                                <InputLabel id="demo-multiple-checkbox-label">Opponents</InputLabel>
+                                <Select
+                                    multiple
+                                    value={selectedOpponentStrengths}
+                                    onChange={onChangeOpponentStrengths}
+                                    input={<OutlinedInput label="Tag" />}
+                                    renderValue={() => selectedOpponentStrengths.length === opponentStrengths.length
+                                        ? 'All'
+                                        : selectedOpponentStrengths.join(', ')}
+                                >
+                                    {opponentStrengths.map((strength) => (
+                                        <MenuItem key={strength} value={strength}>
+                                            <Checkbox checked={selectedOpponentStrengths.indexOf(strength) > -1} />
+                                            <ListItemText primary={strength} />
+                                        </MenuItem>
+                                    ))}
+                                </Select>
+                            </FormControl>
+                        </Grid>
                     </Grid>
-                    <Grid item>
-                        <TeamAutocomplete label="Team 2" value={team2} onChange={onChangeTeam2} teams={teams} />
-                    </Grid>
-                    <Grid item>
-                        <FormControl sx={{ m: 2, width: 150 }}>
-                            <InputLabel id="demo-multiple-checkbox-label">Opponents</InputLabel>
-                            <Select
-                                multiple
-                                value={selectedOpponentStrengths}
-                                onChange={onChangeOpponentStrengths}
-                                input={<OutlinedInput label="Tag" />}
-                                renderValue={() => selectedOpponentStrengths.length === opponentStrengths.length
-                                    ? 'All'
-                                    : selectedOpponentStrengths.join(', ')}
-                            >
-                                {opponentStrengths.map((strength) => (
-                                    <MenuItem key={strength} value={strength}>
-                                        <Checkbox checked={selectedOpponentStrengths.indexOf(strength) > -1} />
-                                        <ListItemText primary={strength} />
-                                    </MenuItem>
-                                ))}
-                            </Select>
-                        </FormControl>
-                    </Grid>
-                </Grid>
+                </div>
             </div>
         </Container>
     )

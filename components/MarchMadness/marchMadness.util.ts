@@ -46,3 +46,9 @@ export const getFilteredScores = (scores: Score[] | undefined, selectedOpponentS
         ? scores.filter(score =>
             selectedOpponentStrengths.includes(getOpponentStrength(score.precise_spread)))
         : [];
+
+export const getWinPctColor = (winPct: number | undefined) =>
+    winPct && Math.round(winPct) >= 50 ? '#4CAF50' : '#E57373';
+
+export const getWinPctWidth = (winPct: number | undefined) =>
+    winPct ? Math.round(winPct) / 100 * 400 : 0;

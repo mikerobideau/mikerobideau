@@ -23,7 +23,7 @@ export interface Team {
 
 export interface SimulationResult {
     team1: string;
-    team1WinPct: string;
+    team1WinPct: number;
     team2: string;
-    team2WinPct: string;
+    team2WinPct: number;
 }

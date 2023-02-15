@@ -6,6 +6,11 @@
 }
 
 /*Header*/
+
+.marchMadnessHeaderContainer {
+  margin-top: 5rem;
+}
+
 .marchMadnessHeader {
   text-align: center;
   font-family: AtlasGrotesk-Medium;
@@ -16,13 +21,17 @@
   text-align: center;
   font-family: "Helvetica Neue";
   font-size: 1.8rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
+}
+.descriptionContainer {
+  margin-bottom: 0.5rem;
 }
 
 .marchMadnessDescription {
   text-align: center;
   font-family: "Helvetica Neue";
-  font-size: 1.4rem;
+  font-size: 1.2rem;
+  font-style: italic;
 }
 
 .boldHeader {
@@ -34,30 +43,58 @@
 
 .filters {
   margin-top: 3rem;
+}
+
+.filtersInner {
   display: flex;
   border-bottom: 1px solid black;
 }
 
-/*Dashboard*/
+.filtersHeader {
+  font-size: 1.2rem
+}
 
+/*Dashboard*/
 
 .dashboardContent {
   text-align: center;
+  margin: 3rem 0;
 }
 
 .winPct {
+  z-index: 1;
   font-size: 3rem;
-  line-height: 10rem;
-  vertical-align: middle;
+  line-height: 6rem;
+  width: 400px;
+  border: 2px solid lightgrey;
+}
+
+.winPctFill {
+  height: 6rem;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+}
+
+.winPctContainer {
+  display: inline-flex;
+  width: 400px;
+  margin: 0;
+  padding: 0;
 }
 
 .vs {
   font-size: 1.6rem;
+  height: 6rem;
+  line-height: 6rem;
+  vertical-align: top;
 }
 
 .teamLogoLarge {
-  padding: 0 1rem;
+  vertical-align: baseline;
+  margin: 0 1.5rem;
 }
+
 
 /*Team Autocomplete*/
 .teamAutocomplete {
@@ -79,12 +116,12 @@
 }
 
 .good {
-  color: green;
+  color: #4CAF50;
   font-weight: bold;
 }
 
 .bad {
-  color: red;
+  color: #E57373;
   font-weight: bold;
 }
 
