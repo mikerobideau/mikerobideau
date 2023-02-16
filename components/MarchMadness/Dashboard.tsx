@@ -16,18 +16,6 @@ interface DashboardProps {
 }
 
 export const Dashboard: FunctionComponent<DashboardProps> = ({team1, team2, simulationResult}) => {
-    const team1Spring = useSpring({
-        winPct: simulationResult?.team1WinPct || 0,
-        width: getWinPctWidth(simulationResult?.team1WinPct),
-        backgroundColor: getWinPctColor(simulationResult?.team1WinPct)
-    });
-
-    const team2Spring = useSpring({
-        winPct: simulationResult?.team2WinPct || 0,
-        width: getWinPctWidth(simulationResult?.team2WinPct),
-        backgroundColor: getWinPctColor(simulationResult?.team2WinPct)
-    });
-
     const team1Logo = <Image className={styles.teamLogoLarge}
                              width="100"
                              height="100"
