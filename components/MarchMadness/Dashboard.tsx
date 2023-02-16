@@ -1,7 +1,7 @@
 import {FunctionComponent} from "react";
 import Image from 'next/image';
 import { useSpring, animated } from 'react-spring';
-import {Container} from "@mui/material";
+import {Container, Hidden} from "@mui/material";
 
 import {SimulationResult, Team} from "@/components/MarchMadness/Model";
 
@@ -27,44 +27,72 @@ export const Dashboard: FunctionComponent<DashboardProps> = ({team1, team2, simu
         backgroundColor: getWinPctColor(simulationResult?.team2WinPct)
     });
 
+    const team1Logo = <Image className={styles.teamLogoLarge}
+                             width="100"
+                             height="100"
+                             src={team1.logo}
+                             alt=""/>;
+
+    const team2Logo = <Image className={styles.teamLogoLarge}
+                             width="100"
+                             height="100"
+                             src={team2.logo}
+                             alt=""/>;
+
     return simulationResult ? (
         <Container>
-            <div className={styles.dashboardContent}>
-                <div className={styles.winPctContainer}>
-                    <div className={styles.winPctFillContainer}>
-                        <animated.div className={styles.winPctFill} style={team1Spring}/>
+            <Hidden lgDown>
+                <div className={styles.dashboardContent}>
+                    <div className={styles.winPctContainer}>
+                        <div className={styles.winPctFillContainer}>
+                            <animated.div className={styles.winPctFill} style={team1Spring}/>
+                        </div>
+                        <animated.span className={styles.winPct}>
+                            {team1Spring.winPct.interpolate(x => `${Math.round(x)}%`)}
+                        </animated.span>
                     </div>
-                    <animated.span className={styles.winPct}>
-                        {team1Spring.winPct.interpolate(x => `${Math.round(x)}%`)}
-                    </animated.span>
+                    {team1Logo}
+                    <span className={styles.vs}>vs</span>
+                    {team2Logo}
+                    <div className={styles.winPctContainer}>
+                        <div className={styles.winPctFillContainer}>
+                            <animated.div className={styles.winPctFill} style={team2Spring}/>
+                        </div>
+                        <animated.span className={styles.winPct}>
+                            {team2Spring.winPct.interpolate(x => `${Math.round(x)}%`)}
+                        </animated.span>
+                    </div>
                 </div>
+            </Hidden>
 
-                <Image className={styles.teamLogoLarge}
-                       width="100"
-                       height="100"
-                       src={team1.logo}
-                       alt=""/>
-                <span className={styles.vs}>vs</span>
-                <Image className={styles.teamLogoLarge}
-                       width="100"
-                       height="100"
-                       src={team2.logo}
-                       alt=""/>
-                <div className={styles.winPctContainer}>
-                    <div className={styles.winPctFillContainer}>
-                        <animated.div className={styles.winPctFill} style={team2Spring}/>
+            <Hidden lgUp>
+                <div className={styles.mobileDashboardContainer}>
+                    <div className={styles.mobileWinPctContainer}>
+                        {team1Logo}
+                        <div className={styles.winPctContainer}>
+                            <div className={styles.winPctFillContainer}>
+                                <animated.div className={styles.winPctFill} style={team1Spring}/>
+                            </div>
+                            <animated.span className={styles.winPct}>
+                                {team1Spring.winPct.interpolate(x => `${Math.round(x)}%`)}
+                            </animated.span>
+                        </div>
                     </div>
-                    <animated.span className={styles.winPct}>
-                        {team2Spring.winPct.interpolate(x => `${Math.round(x)}%`)}
-                    </animated.span>
+                    <div className={styles.mobileWinPctContainer}>
+                        {team2Logo}
+                        <div className={styles.winPctContainer}>
+                            <div className={styles.winPctFillContainer}>
+                                <animated.div className={styles.winPctFill} style={team2Spring}/>
+                            </div>
+                            <animated.span className={styles.winPct}>
+                                {team2Spring.winPct.interpolate(x => `${Math.round(x)}%`)}
+                            </animated.span>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </Hidden>
         </Container>
     ) : <div />
 }
-
-/*
-
- */
 
 export default Dashboard;

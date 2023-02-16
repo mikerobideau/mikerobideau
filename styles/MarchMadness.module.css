@@ -14,13 +14,13 @@
 .marchMadnessHeader {
   text-align: center;
   font-family: AtlasGrotesk-Medium;
-  font-size: 2.5rem;
+  font-size: 2em;
 }
 
 .marchMadnessSubheader {
   text-align: center;
   font-family: "Helvetica Neue";
-  font-size: 1.8rem;
+  font-size: 1.6em;
   margin-bottom: 0.5rem;
 }
 .descriptionContainer {
@@ -42,7 +42,7 @@
 /*Filters*/
 
 .filters {
-  margin-top: 3rem;
+  margin-top: 2rem;
 }
 
 .filtersInner {
@@ -65,7 +65,7 @@
   z-index: 1;
   font-size: 3rem;
   line-height: 6rem;
-  width: 400px;
+  width: 300px;
   border: 2px solid lightgrey;
 }
 
@@ -78,9 +78,14 @@
 
 .winPctContainer {
   display: inline-flex;
-  width: 400px;
+  width: 300px;
   margin: 0;
   padding: 0;
+}
+
+.mobileWinPctContainer {
+  display: inline-flex;
+  margin-top: 2rem;
 }
 
 .vs {
