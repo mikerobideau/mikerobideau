@@ -1,11 +1,10 @@
-//@ts-nocheck
 import {FunctionComponent} from "react";
 
 import {TeamAutocomplete} from "@/components/MarchMadness/TeamAutocomplete";
 import {
     Checkbox, Container,
     FormControl,
-    Grid,
+    Grid, Hidden,
     InputLabel,
     ListItemText,
     MenuItem,
@@ -16,6 +15,7 @@ import {
 import {Team} from "@/components/MarchMadness/Model";
 
 import styles from '@/styles/MarchMadness.module.css';
+import OpponentSelect from "@/components/MarchMadness/OpponentSelect";
 
 interface FilterProps {
     teams: Team[];
@@ -39,32 +39,28 @@ export const Filters: FunctionComponent<FilterProps> = ({
                                                             onChangeOpponentStrengths}) => {
     return (
         <Container>
-            <div className={styles.filters}>
-                <h4 className={styles.filtersHeader}>FILTERS</h4>
-                <div className={styles.filtersInner}>
+            <Hidden smDown>
+                <div className={styles.filters}>
+                    <div className={styles.filtersInner}>
+                        <TeamAutocomplete label="Team 1" value={team1} onChange={onChangeTeam1} teams={teams} />
+                        <TeamAutocomplete label="Team 2" value={team2} onChange={onChangeTeam2} teams={teams} />
+                        <OpponentSelect values={selectedOpponentStrengths}
+                                        onChange={onChangeOpponentStrengths}
+                                        opponentStrengths={opponentStrengths} />
+                    </div>
+                </div>
+            </Hidden>
+
+            <Hidden smUp>
+                <div className={styles.filtersMobile}>
                     <TeamAutocomplete label="Team 1" value={team1} onChange={onChangeTeam1} teams={teams} />
                     <TeamAutocomplete label="Team 2" value={team2} onChange={onChangeTeam2} teams={teams} />
-                    <FormControl sx={{ m: 2, width: 150 }}>
-                        <InputLabel id="demo-multiple-checkbox-label">Opponents</InputLabel>
-                        <Select
-                            multiple
-                            value={selectedOpponentStrengths}
-                            onChange={onChangeOpponentStrengths}
-                            input={<OutlinedInput label="Tag" />}
-                            renderValue={() => selectedOpponentStrengths.length === opponentStrengths.length
-                                ? 'All'
-                                : selectedOpponentStrengths.join(', ')}
-                        >
-                            {opponentStrengths.map((strength) => (
-                                <MenuItem key={strength} value={strength}>
-                                    <Checkbox checked={selectedOpponentStrengths.indexOf(strength) > -1} />
-                                    <ListItemText primary={strength} />
-                                </MenuItem>
-                            ))}
-                        </Select>
-                    </FormControl>
+                    <OpponentSelect values={selectedOpponentStrengths}
+                                    onChange={onChangeOpponentStrengths}
+                                    opponentStrengths={opponentStrengths} />
                 </div>
-            </div>
+            </Hidden>
+
         </Container>
     )
 }

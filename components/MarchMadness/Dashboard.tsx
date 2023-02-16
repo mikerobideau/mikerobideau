@@ -1,10 +1,8 @@
 import {FunctionComponent} from "react";
 import Image from 'next/image';
-import { useSpring, animated } from 'react-spring';
 import {Container, Hidden} from "@mui/material";
 
 import {SimulationResult, Team} from "@/components/MarchMadness/Model";
-import {getWinPctColor, getWinPctWidth} from "@/components/MarchMadness/marchMadness.util";
 import WinPct from "@/components/MarchMadness/WinPct";
 
 import styles from '@/styles/MarchMadness.module.css';

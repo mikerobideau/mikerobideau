@@ -5,11 +5,17 @@ body {
 .MuiFormLabel-root {
     background: white;
     font-family:  "DecimaMonoPro" !important;
+    margin-left: 0 !important;
+}
+
+.MuiFormControl-root {
+    margin-left: 0;
 }
 
 .MuiTableCell-root {
     font-family:  "DecimaMonoPro" !important;
 }
+
 
 @font-face {
     font-family: 'AtlasGrotesk-Black';

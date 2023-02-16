@@ -26,14 +26,11 @@ interface MarchMadnessProps {
 const opponentStrengths = ['Elite', 'Very strong', 'Strong', 'Above average', 'Average', 'Below average', 'Weak',
     'Very weak', 'Extremely weak'];
 
-
 const MarchMadness: FunctionComponent<MarchMadnessProps> = ({defaultTeam1, defaultTeam2, teams}) => {
     const [team1Scores, setTeam1Scores] = useState<Score[] | undefined>();
     const [team2Scores, setTeam2Scores] = useState<Score[] | undefined>();
     const [team1FilteredScores, setTeam1FilteredScores] = useState<Score[]>();
     const [team2FilteredScores, setTeam2FilteredScores] = useState<Score[]>();
-    const [team1Record, setTeam1Record] = useState<number[]>();
-    const [team2Record, setTeam2Record] = useState<number[]>();
     const [showScoresFor, setShowScoresFor] = useState<Team>();
     const [team1, setTeam1] = useState<Team>(defaultTeam1);
     const [team2, setTeam2] = useState<Team>(defaultTeam2);
@@ -82,18 +79,6 @@ const MarchMadness: FunctionComponent<MarchMadnessProps> = ({defaultTeam1, defau
             setSimulationResult(result);
         }
     }
-
-    useEffect(() => {
-        if (team1Scores) {
-            setTeam1Record(getRecord(team1Scores));
-        }
-    }, [team1Scores]);
-
-    useEffect(() => {
-        if (team2Scores) {
-            setTeam2Record(getRecord(team2Scores));
-        }
-    }, [team2Scores]);
 
     useEffect(() => {
         setTeam1FilteredScores(getFilteredScores(team1Scores, selectedOpponentStrengths));

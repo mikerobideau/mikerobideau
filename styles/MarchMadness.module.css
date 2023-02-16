@@ -1,26 +1,25 @@
 
 /*Main*/
 .marchMadness {
-  padding: 0 2rem;
   font-family: AtlasGrotesk-Medium, "Helvetica Neue", Helvetica;
 }
 
 /*Header*/
 
 .marchMadnessHeaderContainer {
-  margin-top: 5rem;
+  margin-top: 3rem;
 }
 
 .marchMadnessHeader {
   text-align: center;
   font-family: AtlasGrotesk-Medium;
-  font-size: 2em;
+  font-size: 1.8em;
 }
 
 .marchMadnessSubheader {
   text-align: center;
   font-family: "Helvetica Neue";
-  font-size: 1.6em;
+  font-size: 1.2em;
   margin-bottom: 0.5rem;
 }
 .descriptionContainer {
@@ -30,7 +29,7 @@
 .marchMadnessDescription {
   text-align: center;
   font-family: "Helvetica Neue";
-  font-size: 1.2rem;
+  font-size: 1.0rem;
   font-style: italic;
 }
 
@@ -50,8 +49,9 @@
   border-bottom: 1px solid black;
 }
 
-.filtersHeader {
-  font-size: 1.2rem
+.filtersMobile {
+  display: flex;
+  flex-direction: column;
 }
 
 /*Dashboard*/
@@ -102,6 +102,10 @@
   margin-top: 2rem;
 }
 
+.mobileDashboardContainer {
+  margin-bottom: 3rem;
+}
+
 .vs {
   font-size: 1.6rem;
   height: 6rem;
@@ -113,7 +117,6 @@
   vertical-align: baseline;
   margin: 0 1.5rem;
 }
-
 
 /*Team Autocomplete*/
 .teamAutocomplete {

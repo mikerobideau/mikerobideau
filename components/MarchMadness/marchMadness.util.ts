@@ -52,8 +52,6 @@ export const getWinPctColor = (winPct: number | undefined) =>
 
 export const getWinPctWidth = (winPct: number | undefined, size: ScreenSize) => {
     const maxSize = isLargeScreenSize(size) ? 400 : 200;
-    console.log(size);
-    console.log(maxSize);
     return winPct ? Math.round(winPct) / 100 * maxSize : 0;
 }
 
