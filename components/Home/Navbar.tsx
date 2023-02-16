@@ -2,7 +2,7 @@ import React, {FunctionComponent} from "react";
 import Link from "next/link";
 import {Container} from "@mui/material";
 
-import styles from '@/styles/Home.module.css'
+import styles from '@/styles/Homepage.module.css'
 
 const Navbar: FunctionComponent = () => {
     return (

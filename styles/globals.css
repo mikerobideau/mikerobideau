@@ -1,5 +1,18 @@
+html,
 body {
-    font-family: "AtlasGrotesk-Medium", "DecimaMonoPro" !important;
+    padding: 0;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+* {
+    box-sizing: border-box;
 }
 
 .MuiFormLabel-root {
@@ -15,7 +28,6 @@ body {
 .MuiTableCell-root {
     font-family:  "DecimaMonoPro" !important;
 }
-
 
 @font-face {
     font-family: 'AtlasGrotesk-Black';
@@ -36,4 +48,9 @@ body {
 @font-face {
     font-family: 'DecimaMonoPro';
     src: local('DecimaMonoPro'), url(../fonts/DecimaMonoPro.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Lobster';
+    src: local('Lobster'), url(../fonts/Lobster-Regular.ttf) format('truetype');
 }

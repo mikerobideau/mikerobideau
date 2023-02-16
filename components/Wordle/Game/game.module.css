@@ -1,0 +1,26 @@
+.game {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.boardContainer {
+  width: 100%;
+  display: flex;
+  flex-layout: row;
+  justify-content: center;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.board {
+  width: 350px;
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+  padding: 2px;
+  box-sizing: border-box;
+}
+
+
+
+

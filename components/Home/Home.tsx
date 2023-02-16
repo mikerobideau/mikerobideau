@@ -1,6 +1,6 @@
 import React, {FunctionComponent} from "react";
 
-import styles from '@/styles/Home.module.css'
+import styles from '@/styles/Homepage.module.css'
 import Image from "next/image";
 import Skills from "@/components/Home/Skills";
 import Link from "next/link";

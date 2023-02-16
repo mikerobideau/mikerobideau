@@ -1,0 +1,19 @@
+.navbar {
+  padding: 0.25rem;
+  display: flex;
+  justify-content: center;
+  font-family: Lobster;
+  font-weight: bold;
+  border-bottom: 1px solid #e1e1e1;
+}
+
+.logo {
+  width: 35px;
+  height: 35px;
+  margin: 0.2rem 0.5rem 0 0;
+}
+
+.title {
+  font-size: 2em;
+  font-weight: bold;
+}
