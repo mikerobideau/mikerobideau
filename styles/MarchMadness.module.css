@@ -65,8 +65,15 @@
   z-index: 1;
   font-size: 3rem;
   line-height: 6rem;
-  width: 300px;
   border: 2px solid lightgrey;
+}
+
+.winPctLarge {
+  width: 400px;
+}
+
+.winPctSmall {
+  width: 200px;
 }
 
 .winPctFill {
@@ -78,9 +85,16 @@
 
 .winPctContainer {
   display: inline-flex;
-  width: 300px;
   margin: 0;
   padding: 0;
+}
+
+.winPctContainerLarge {
+  width: 400px;
+}
+
+.winPctContainerSmall {
+  width: 200px;
 }
 
 .mobileWinPctContainer {

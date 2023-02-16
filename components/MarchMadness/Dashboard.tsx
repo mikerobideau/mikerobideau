@@ -4,9 +4,10 @@ import { useSpring, animated } from 'react-spring';
 import {Container, Hidden} from "@mui/material";
 
 import {SimulationResult, Team} from "@/components/MarchMadness/Model";
+import {getWinPctColor, getWinPctWidth} from "@/components/MarchMadness/marchMadness.util";
+import WinPct from "@/components/MarchMadness/WinPct";
 
 import styles from '@/styles/MarchMadness.module.css';
-import {getWinPctColor, getWinPctWidth} from "@/components/MarchMadness/marchMadness.util";
 
 interface DashboardProps {
     team1: Team;
@@ -43,25 +44,11 @@ export const Dashboard: FunctionComponent<DashboardProps> = ({team1, team2, simu
         <Container>
             <Hidden lgDown>
                 <div className={styles.dashboardContent}>
-                    <div className={styles.winPctContainer}>
-                        <div className={styles.winPctFillContainer}>
-                            <animated.div className={styles.winPctFill} style={team1Spring}/>
-                        </div>
-                        <animated.span className={styles.winPct}>
-                            {team1Spring.winPct.interpolate(x => `${Math.round(x)}%`)}
-                        </animated.span>
-                    </div>
+                    <WinPct value={simulationResult.team1WinPct} size='lg' />
                     {team1Logo}
                     <span className={styles.vs}>vs</span>
                     {team2Logo}
-                    <div className={styles.winPctContainer}>
-                        <div className={styles.winPctFillContainer}>
-                            <animated.div className={styles.winPctFill} style={team2Spring}/>
-                        </div>
-                        <animated.span className={styles.winPct}>
-                            {team2Spring.winPct.interpolate(x => `${Math.round(x)}%`)}
-                        </animated.span>
-                    </div>
+                    <WinPct value={simulationResult.team2WinPct} size='lg' />
                 </div>
             </Hidden>
 
@@ -69,25 +56,11 @@ export const Dashboard: FunctionComponent<DashboardProps> = ({team1, team2, simu
                 <div className={styles.mobileDashboardContainer}>
                     <div className={styles.mobileWinPctContainer}>
                         {team1Logo}
-                        <div className={styles.winPctContainer}>
-                            <div className={styles.winPctFillContainer}>
-                                <animated.div className={styles.winPctFill} style={team1Spring}/>
-                            </div>
-                            <animated.span className={styles.winPct}>
-                                {team1Spring.winPct.interpolate(x => `${Math.round(x)}%`)}
-                            </animated.span>
-                        </div>
+                        <WinPct value={simulationResult.team1WinPct} size='sm' />
                     </div>
                     <div className={styles.mobileWinPctContainer}>
                         {team2Logo}
-                        <div className={styles.winPctContainer}>
-                            <div className={styles.winPctFillContainer}>
-                                <animated.div className={styles.winPctFill} style={team2Spring}/>
-                            </div>
-                            <animated.span className={styles.winPct}>
-                                {team2Spring.winPct.interpolate(x => `${Math.round(x)}%`)}
-                            </animated.span>
-                        </div>
+                        <WinPct value={simulationResult.team2WinPct} size='sm' />
                     </div>
                 </div>
             </Hidden>

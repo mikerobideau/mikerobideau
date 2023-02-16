@@ -27,3 +27,5 @@ export interface SimulationResult {
     team2: string;
     team2WinPct: number;
 }
+
+export type ScreenSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
