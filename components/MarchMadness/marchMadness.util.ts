@@ -6,7 +6,7 @@ export const getRecord = (scores: Score[]): number[] => {
     return [wins, scores.length - wins];
 }
 
-export const getOpponentStrength = (spread: number) => {
+export const getTeamStrength = (spread: number) => {
     if (spread > 10) {
         return 'Elite';
     } else if (spread > 5) {
@@ -44,7 +44,7 @@ export const getTeam = (teamName: string | null | undefined, teams: Team[]): Tea
 export const getFilteredScores = (scores: Score[] | undefined, selectedOpponentStrengths: string[]): Score[] =>
     scores
         ? scores.filter(score =>
-            selectedOpponentStrengths.includes(getOpponentStrength(score.precise_spread)))
+            selectedOpponentStrengths.includes(getTeamStrength(score.precise_spread)))
         : [];
 
 export const getWinPctColor = (winPct: number | undefined) =>

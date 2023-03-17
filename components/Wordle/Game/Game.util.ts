@@ -1,4 +1,7 @@
+//@ts-ignore
 import * as _ from 'lodash';
+
+import {Guesses} from "@/components/Wordle/Game/Game";
 
 export const placeholders = [
     ['*', '*', '*', '*', '*'],
@@ -16,16 +19,16 @@ export const isLetter = (key: string) => ALPHABET.includes(key.toUpperCase());
 
 export const getGuessKey = (index: number): string => `guess${index + 1}`;
 
-export const updateCompletedGuesses = (prevGuessCompletion: Map<string, string>, guessIndex: number, guess: string) => ({
+export const updateCompletedGuesses = (prevGuessCompletion: Guesses, guessIndex: number, guess: string) => ({
     ...prevGuessCompletion,
     [getGuessKey(guessIndex)]: guess
 });
 
-export const getGuess = (guessIndex: number, index: number, guess: string, completedGuesses: Map<string, string>): string | null => {
+export const getGuess = (guessIndex: number, index: number, guess: string, completedGuesses: Guesses): string | null => {
     if (guessIndex === index) {
         return guess;
     } else if (guessIndex > index) {
-        return completedGuesses[getGuessKey(index)];
+        return completedGuesses[getGuessKey(index) as keyof Guesses];
     } else {
         return null;
     }
@@ -53,17 +56,18 @@ export const getVictoryMessage = (guesses: number): string => {
 
 export const getDefaultKeyboardClasses = () => {
     const keyboardClasses = {};
+    //@ts-ignore
     ALPHABET.forEach(letter => keyboardClasses[letter] = null);
     return keyboardClasses;
 }
 
-export const getGuessedLetters = (guesses) =>
+export const getGuessedLetters = (guesses: Guesses) =>
     _.uniq(Object.values(guesses)
         .filter(guess => guess !== null)
         .join('')
         .toUpperCase());
 
-export const isInCorrectPosition = (letter, guesses, answer) => {
+export const isInCorrectPosition = (letter: string, guesses: Guesses, answer: string) => {
     let guessValues = Object.values(guesses).filter(guess => guess !== null);
     for (let i = 0; i < guessValues.length; i++) {
         let guess = guessValues[i];

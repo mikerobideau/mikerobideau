@@ -3,7 +3,7 @@ import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow}
 import Image from 'next/image';
 
 import {Score, Team} from "@/components/MarchMadness/Model";
-import {getOpponentStrength, sortScores} from "@/components/MarchMadness/marchMadness.util";
+import {getTeamStrength, sortScores} from "@/components/MarchMadness/marchMadness.util";
 
 import styles from '@/styles/MarchMadness.module.css';
 
@@ -41,8 +41,8 @@ export const ScoreTable: FunctionComponent<ScoreTableProps> = ({scores, teams}) 
                                     {row.team2}
                                 </TableCell>
                                 <TableCell
-                                    className={['Elite', 'Very strong', 'Strong'].includes(getOpponentStrength(row.precise_spread)) ? styles.good : ['Weak', 'Very weak', 'Extremely weak'].includes(getOpponentStrength(row.precise_spread)) ? styles.bad : styles.neutral}>
-                                    {getOpponentStrength(row.precise_spread)}
+                                    className={['Elite', 'Very strong', 'Strong'].includes(getTeamStrength(row.precise_spread)) ? styles.good : ['Weak', 'Very weak', 'Extremely weak'].includes(getTeamStrength(row.precise_spread)) ? styles.bad : styles.neutral}>
+                                    {getTeamStrength(row.precise_spread)}
                                 </TableCell>
                                 <TableCell>{row.precise_spread == 0 ? 'Even' : row.precise_spread < 0 ? `Win by ${Math.abs(row.precise_spread).toFixed(0)}` : `Lose by ${Math.abs(row.precise_spread).toFixed(0)}`}</TableCell>
                                 <TableCell

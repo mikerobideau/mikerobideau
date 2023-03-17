@@ -8,7 +8,8 @@ import {
     getGuessKey,
     updateCompletedGuesses,
     getGuess,
-    isLetter, getVictoryMessage
+    isLetter,
+    getVictoryMessage
 } from "./Game.util";
 import Keyboard from "../Keyboard";
 import NavBar from "../NavBar";
@@ -19,11 +20,19 @@ interface GameProps {
     answer: string;
 }
 
+export interface Guesses {
+    guess1: string | null;
+    guess2: string | null;
+    guess3: string | null;
+    guess4: string | null;
+    guess5: string | null;
+}
+
 const Game: FunctionComponent<GameProps> = ({answer}) => {
     const [guess, setGuess] = useState<string>('');
     const [prevGuess, setPrevGuess] = useState<string>('');
     const [guessIndex, setGuessIndex] = useState(0);
-    const [completeGuesses, setCompleteGuesses]  = useState({
+    const [completeGuesses, setCompleteGuesses]  = useState<Guesses>({
         guess1: null,
         guess2: null,
         guess3: null,
@@ -63,6 +72,14 @@ const Game: FunctionComponent<GameProps> = ({answer}) => {
         }
     }, [guess]);
 
+    useEffect(() => {
+        if (guessIndex > 5 && prevGuess.toUpperCase() !== answer.toUpperCase()) {
+            window.setTimeout(() => {
+                toast.error(`The answer was ${answer.toUpperCase()}`);
+            }, 2500);
+        }
+    }, [guessIndex]);
+
     const handleKeyPress = (event: any) => {
         event.preventDefault();
         onKeyboardClick(event.key);
@@ -71,7 +88,7 @@ const Game: FunctionComponent<GameProps> = ({answer}) => {
     useEffect(() => {
         document.addEventListener('keydown', handleKeyPress);
         return () => document.removeEventListener("keydown", handleKeyPress);
-    }, [handleKeyPress])
+    }, [handleKeyPress]);
 
     return (
         <div className={styles.game}>
@@ -84,9 +101,9 @@ const Game: FunctionComponent<GameProps> = ({answer}) => {
                     {placeholders.map((placeholder, index) => <Word
                         key={index}
                         placeholder={placeholder}
-                        guess={getGuess(guessIndex, index, guess, completeGuesses)?.toUpperCase()}
+                        guess={getGuess(guessIndex, index, guess, completeGuesses)?.toUpperCase() || null}
                         answer={answer.toUpperCase()}
-                        isComplete={!!completeGuesses[getGuessKey(index)]} /> )}
+                        isComplete={!!completeGuesses[getGuessKey(index) as keyof Guesses]} /> )}
                 </div>
             </div>
             <div className={styles.keyboardContainer}>

@@ -19,6 +19,7 @@ export interface Team {
     team: string;
     conference: string;
     logo: string;
+    strength: number;
 }
 
 export interface SimulationResult {

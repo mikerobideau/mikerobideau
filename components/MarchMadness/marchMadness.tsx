@@ -1,5 +1,5 @@
 
-import React, {FunctionComponent, useEffect, useState} from "react";
+import React, {FunctionComponent, useEffect, useMemo, useState} from "react";
 
 import {
     Container,
@@ -7,7 +7,7 @@ import {
 } from "@mui/material";
 
 import {Score, SimulationResult, Team} from "@/components/MarchMadness/Model";
-import {getFilteredScores, getRecord} from "@/components/MarchMadness/marchMadness.util";
+import {getFilteredScores} from "@/components/MarchMadness/marchMadness.util";
 import {getScores, simulate} from "@/components/MarchMadness/marchMadnessService";
 import {ScoreTable} from "@/components/MarchMadness/ScoreTable";
 import Header from "@/components/MarchMadness/Header";
@@ -40,8 +40,8 @@ const MarchMadness: FunctionComponent<MarchMadnessProps> = ({defaultTeam1, defau
     useEffect(() => {
         (async() => {
             if (team1) {
-                setTeam1Scores(await getScores(team1.team));
                 setShowScoresFor(team1);
+                setTeam1Scores(await getScores(team1.team));
             }
         })();
     }, [team1]);
@@ -49,8 +49,8 @@ const MarchMadness: FunctionComponent<MarchMadnessProps> = ({defaultTeam1, defau
     useEffect(() => {
         (async() => {
             if (team2) {
-                setTeam2Scores(await getScores(team2.team));
                 setShowScoresFor(team2);
+                setTeam2Scores(await getScores(team2.team));
             }
         })();
     }, [team2]);

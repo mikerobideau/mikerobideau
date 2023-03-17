@@ -57,6 +57,8 @@
 /*Dashboard*/
 
 .dashboardContent {
+  display: flex;
+  flex-direction: row;
   text-align: center;
   margin: 3rem 0;
 }
@@ -64,7 +66,7 @@
 .winPct {
   z-index: 1;
   font-size: 3rem;
-  line-height: 6rem;
+  line-height: 8rem;
   border: 2px solid lightgrey;
 }
 
@@ -77,7 +79,7 @@
 }
 
 .winPctFill {
-  height: 6rem;
+  height: 8.2rem;
   position: absolute;
   margin: 0;
   padding: 0;

@@ -8,12 +8,11 @@ interface WordleProps {
 }
 
 export async function getServerSideProps({ params }: any) {
-    /*
     var dt = new Date();
     var offset = -300; //Timezone offset for EST in minutes.
     var easternDate = new Date(dt.getTime() + offset*60*1000);
     const today = easternDate.toISOString().slice(0, 10).replace('T', ' ');
-    let answer;
+    let answer: string;
 
 
     answer = await getAnswerByDate(today);
@@ -21,13 +20,10 @@ export async function getServerSideProps({ params }: any) {
         await setAnswerDate(today);
         answer = await getAnswerByDate(today);
     }
-     */
-
-    const answer = 'Craig';
 
     return {
         props: {
-            answer: 'Craig'
+            answer: answer
         }
     }
 }

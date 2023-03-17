@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {FunctionComponent, useCallback, useEffect, useState} from "react";
+import {FunctionComponent, useCallback} from "react";
 
 import styles from './letter.module.css';
 

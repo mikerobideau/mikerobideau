@@ -5,7 +5,7 @@ import Letter from "../Letter";
 import styles from '@/components/Wordle/Word/word.module.css';
 
 interface WordProps {
-    guess: string;
+    guess: string | null;
     answer: string;
     placeholder: string[];
     isComplete: boolean;

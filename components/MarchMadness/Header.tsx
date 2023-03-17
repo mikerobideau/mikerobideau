@@ -7,7 +7,7 @@ const Header: FunctionComponent = () => {
     return (
         <Container>
             <div className={styles.marchMadnessHeaderContainer}>
-                <h1 className={styles.marchMadnessHeader}>'22-'23 March Madness</h1>
+                <h1 className={styles.marchMadnessHeader}>22-23 March Madness</h1>
                 <h2 className={styles.marchMadnessSubheader}>Simulate Matchups and Browse Game Grades</h2>
                 <Hidden mdDown>
                     <h2 className={styles.marchMadnessDescription}>

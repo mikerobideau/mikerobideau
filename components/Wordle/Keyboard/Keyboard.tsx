@@ -13,6 +13,8 @@ interface KeyboardProps {
     answer: string;
 }
 
+export type color = 'amber' | 'green' | 'gray';
+
 const Keyboard: FunctionComponent<KeyboardProps> = ({onClick, guesses, answer}) => {
     const row1 = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'];
     const row2 = ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'];
@@ -22,26 +24,29 @@ const Keyboard: FunctionComponent<KeyboardProps> = ({onClick, guesses, answer}) 
     const [keyColors, setKeyColors] = useState(getDefaultKeyboardClasses());
 
     const updateKeyboardClasses = () => {
-        let out = Object.assign({}, keyColors);
+        let newKeyboardClasses: any = Object.assign({}, keyColors);
         getGuessedLetters(guesses).forEach((letter: string) => {
-           if (out[letter] === 'amber') {
+           if (newKeyboardClasses[letter] === 'amber') {
                if (isInCorrectPosition(letter, guesses, answer)) {
-                   out[letter] = 'green';
+                   newKeyboardClasses[letter] = 'green';
                }
-           } else if (out[letter] === null) {
+           } else if (newKeyboardClasses[letter] === null) {
                 if (isInCorrectPosition(letter, guesses, answer)) {
-                    out[letter] = 'green';
+                    newKeyboardClasses[letter] = 'green';
                 } else if (answer.toUpperCase().includes(letter)) {
-                    out[letter] = 'amber'
+                    newKeyboardClasses[letter] = 'amber'
                 } else {
-                    out[letter] = 'gray';
+                    newKeyboardClasses[letter] = 'gray';
                 }
             }
         });
-        setKeyColors(out);
+        setKeyColors(newKeyboardClasses);
     }
 
-    const getColor = (key: string) => isLetter(key) ? keyColors[key.toUpperCase()] : null;
+    const getColor = (key: string): color => isLetter(key)
+        //@ts-ignore
+        ? keyColors[key.toUpperCase()]
+        : null;
 
     useEffect(() => {
         window.setTimeout(() => {
@@ -53,9 +58,9 @@ const Keyboard: FunctionComponent<KeyboardProps> = ({onClick, guesses, answer}) 
     return (
         <div className={styles.keyboardContainer}>
             <div className={styles.keyboard}>
-                { rows.map(row => (
-                    <div className={styles.keyboardRow}>
-                        { row.map(key => <Key color={getColor(key)} onClick={() => onClick(key) } char={key} /> )}
+                { rows.map((row, index) => (
+                    <div className={styles.keyboardRow} key={index}>
+                        { row.map((key, i) => <Key color={getColor(key)} onClick={() => onClick(key) } char={key} key={i}/> )}
                     </div>
                 ))}
             </div>

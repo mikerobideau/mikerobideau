@@ -6,6 +6,7 @@ import {SimulationResult, Team} from "@/components/MarchMadness/Model";
 import WinPct from "@/components/MarchMadness/WinPct";
 
 import styles from '@/styles/MarchMadness.module.css';
+import {getTeamStrength} from "@/components/MarchMadness/marchMadness.util";
 
 interface DashboardProps {
     team1: Team;
@@ -31,9 +32,15 @@ export const Dashboard: FunctionComponent<DashboardProps> = ({team1, team2, simu
             <Hidden lgDown>
                 <div className={styles.dashboardContent}>
                     <WinPct value={simulationResult.team1WinPct} size='lg' />
-                    {team1Logo}
+                    <span>
+                        <div>{team1Logo}</div>
+                        <div>{getTeamStrength(team1.strength)}</div>
+                    </span>
                     <span className={styles.vs}>vs</span>
-                    {team2Logo}
+                    <span>
+                        <div>{team2Logo}</div>
+                        <div>{getTeamStrength(team2.strength)}</div>
+                    </span>
                     <WinPct value={simulationResult.team2WinPct} size='lg' />
                 </div>
             </Hidden>
