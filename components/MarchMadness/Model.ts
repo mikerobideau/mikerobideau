@@ -27,6 +27,27 @@ export interface SimulationResult {
     team1WinPct: number;
     team2: string;
     team2WinPct: number;
+    diffCounts: DiffCount[];
+    forceNodes: ForceNode[];
+}
+
+export interface DiffCount {
+    diff: number;
+    count: number;
+    count_spread?: number;
+}
+
+export interface DiffFrequencies {
+    [diff: string]: number;
+}
+
+export interface ForceNode {
+    diff: number
 }
 
 export type ScreenSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+
+export interface SimulatedGame {
+    winner: string,
+    wonBy: number
+}

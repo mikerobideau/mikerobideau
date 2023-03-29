@@ -1,21 +1,25 @@
-
-import React, {FunctionComponent, useEffect, useMemo, useState} from "react";
-
+import React, {FunctionComponent, useEffect, useState} from "react";
+import {Box} from "@mui/system";
 import {
-    Container,
-    SelectChangeEvent
+    AppBar, Container,
+    Hidden,
+    SelectChangeEvent, SwipeableDrawer,
+    Toolbar,
+    Typography
 } from "@mui/material";
 
 import {Score, SimulationResult, Team} from "@/components/MarchMadness/Model";
-import {getFilteredScores} from "@/components/MarchMadness/marchMadness.util";
+import {getFilteredScores, sortScores} from "@/components/MarchMadness/marchMadness.util";
 import {getScores, simulate} from "@/components/MarchMadness/marchMadnessService";
-import {ScoreTable} from "@/components/MarchMadness/ScoreTable";
-import Header from "@/components/MarchMadness/Header";
-import Dashboard from "@/components/MarchMadness/Dashboard";
-import Filters from "@/components/MarchMadness/Filters";
+import DesktopHeader from "@/components/MarchMadness/desktop/DesktopHeader";
+import DesktopFilters from "@/components/MarchMadness/desktop/DesktopFilters";
+import {ForceGraph} from "@/components/MarchMadness/shared/ForceGraph/ForceGraph";
 
 import styles from '@/styles/MarchMadness.module.css';
-import {TeamAutocomplete} from "@/components/MarchMadness/TeamAutocomplete";
+import {TeamAutocomplete} from "@/components/MarchMadness/shared/TeamAutocomplete";
+import MobileFilters from "@/components/MarchMadness/mobile/MobileFilters";
+import GameCard from "@/components/MarchMadness/mobile/GameCard";
+import {ScoreTable} from "@/components/MarchMadness/desktop/ScoreTable";
 
 interface MarchMadnessProps {
     defaultTeam1: Team,
@@ -36,6 +40,7 @@ const MarchMadness: FunctionComponent<MarchMadnessProps> = ({defaultTeam1, defau
     const [team2, setTeam2] = useState<Team>(defaultTeam2);
     const [simulationResult, setSimulationResult] = useState<SimulationResult | undefined | null>();
     const [selectedOpponentStrengths, setSelectedOpponentStrengths] = useState<string[]>(opponentStrengths);
+    const [isMobileFilterVisible, setIsMobileFilterVisible] = useState(false);
 
     useEffect(() => {
         (async() => {
@@ -75,6 +80,7 @@ const MarchMadness: FunctionComponent<MarchMadnessProps> = ({defaultTeam1, defau
 
     const simulateGames = async () => {
         if (team1 && team2 && team1FilteredScores && team2FilteredScores) {
+            setSimulationResult(null);
             const result = await simulate(team1.team, team1FilteredScores, team2.team, team2FilteredScores);
             setSimulationResult(result);
         }
@@ -103,28 +109,77 @@ const MarchMadness: FunctionComponent<MarchMadnessProps> = ({defaultTeam1, defau
 
     return (
         <div className={styles.marchMadness}>
-            <Header />
-            <Filters teams={teams}
-                 team1={team1}
-                 team2={team2}
-                 selectedOpponentStrengths={selectedOpponentStrengths}
-                 opponentStrengths={opponentStrengths}
-                 onChangeTeam1={handleChangeTeam1}
-                 onChangeTeam2={handleChangeTeam2}
-                 onChangeOpponentStrengths={handleChangeOpponentStrengths}/>
-            <Dashboard team1={team1} team2={team2} simulationResult={simulationResult}/>
+            <Hidden lgDown>
+                <DesktopHeader />
+                <DesktopFilters teams={teams}
+                                team1={team1}
+                                team2={team2}
+                                selectedOpponentStrengths={selectedOpponentStrengths}
+                                opponentStrengths={opponentStrengths}
+                                onChangeTeam1={handleChangeTeam1}
+                                onChangeTeam2={handleChangeTeam2}
+                                onChangeOpponentStrengths={handleChangeOpponentStrengths}/>
+            </Hidden>
+
+            <Hidden lgUp>
+                <Box sx={{ flexGrow: 1, marginBottom: '1rem'}}>
+                    <AppBar position="static">
+                        <Toolbar>
+                            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                                March Madness
+                            </Typography>
+                            <span>2022-2023</span>
+                        </Toolbar>
+                    </AppBar>
+                </Box>
+            </Hidden>
+
             <Container>
                 <TeamAutocomplete label="Show Grades For"
                                   value={showScoresFor}
                                   onChange={handleChangeShowScoresFor}
                                   teams={teams.filter(team => [team1.team, team2.team].includes(team.team))} />
-                <div className={styles.scoreTable}>
-                    {team1Scores && teams && team1 && showScoresFor?.team === team1.team && (<ScoreTable scores={team1FilteredScores || []} teams={teams}/>)}
-                    {team2Scores && teams && team2 && showScoresFor?.team === team2.team && (<ScoreTable scores={team2FilteredScores || []} teams={teams} />)}
-                </div>
             </Container>
+
+            <Hidden lgDown>
+                <Container>
+                    <div className={styles.scoreTable}>
+                        {team1Scores && teams && team1 && showScoresFor?.team === team1.team && (<ScoreTable scores={team1FilteredScores || []} teams={teams}/>)}
+                        {team2Scores && teams && team2 && showScoresFor?.team === team2.team && (<ScoreTable scores={team2FilteredScores || []} teams={teams} />)}
+                    </div>
+                </Container>
+            </Hidden>
+
+            <Hidden lgUp>
+                {team1Scores && teams && team1 && showScoresFor?.team === team1.team && (sortScores(team1FilteredScores || [])?.map(score => <GameCard score={score} teams={teams}/>))}
+                {team2Scores && teams && team2 && showScoresFor?.team === team2.team && (sortScores(team2FilteredScores || [])?.map(score => <GameCard score={score} teams={teams}/>))}
+            </Hidden>
+
+            <Hidden lgUp>
+                <SwipeableDrawer
+                    anchor="top"
+                    open={isMobileFilterVisible}
+                    onClose={() => setIsMobileFilterVisible(false)}
+                    onOpen={() => true}
+                >
+                    <MobileFilters teams={teams}
+                                   team1={team1}
+                                   team2={team2}
+                                   selectedOpponentStrengths={selectedOpponentStrengths}
+                                   opponentStrengths={opponentStrengths}
+                                   onChangeTeam1={handleChangeTeam1}
+                                   onChangeTeam2={handleChangeTeam2}
+                                   onChangeOpponentStrengths={handleChangeOpponentStrengths}
+                                   onClose={() => setIsMobileFilterVisible(false)}/>
+                </SwipeableDrawer>
+            </Hidden>
+
         </div>
     );
 }
+
+/*
+    {simulationResult && (<ForceGraph nodesData={simulationResult.forceNodes} />)}
+ */
 
 export default MarchMadness;

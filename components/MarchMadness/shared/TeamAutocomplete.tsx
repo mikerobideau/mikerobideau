@@ -12,9 +12,16 @@ interface TeamSelectProps {
     value: Team | null | undefined;
     onChange: (team: Team | null) => void;
     teams: Team[];
+    isMobile?: boolean;
 }
 
-export const TeamAutocomplete: FunctionComponent<TeamSelectProps> = ({label, value, onChange, teams}) => {
+export const TeamAutocomplete: FunctionComponent<TeamSelectProps> = ({
+                                                                         label,
+                                                                         value,
+                                                                         onChange,
+                                                                         teams,
+                                                                         isMobile
+}) => {
     const teamsSorted = useMemo(() =>
         teams.sort((a, b) => -b.conference.localeCompare(a.conference)),
         [teams]);
@@ -31,7 +38,7 @@ export const TeamAutocomplete: FunctionComponent<TeamSelectProps> = ({label, val
             options={teamsSorted}
             groupBy={option => option.conference}
             getOptionLabel={option => option.team}
-            sx={{width: 250}}
+            sx={{width: isMobile ? 400 : 250}}
             renderOption={(props, option) => (
                 <Box key={option.team} component="li" sx={{'& > img': {mr: 2, flexShrink: 0}}} {...props}>
                     <Image key={option.team}

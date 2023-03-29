@@ -3,7 +3,7 @@ import {Container, Hidden} from "@mui/material";
 
 import styles from '@/styles/MarchMadness.module.css';
 
-const Header: FunctionComponent = () => {
+const DesktopHeader: FunctionComponent = () => {
     return (
         <Container>
             <div className={styles.marchMadnessHeaderContainer}>
@@ -24,4 +24,4 @@ const Header: FunctionComponent = () => {
     )
 }
 
-export default Header;
+export default DesktopHeader;

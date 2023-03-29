@@ -15,10 +15,15 @@ interface OpponentSelectProps {
     values: string[];
     onChange: (event: SelectChangeEvent) => void;
     opponentStrengths: string[];
+    isMobile?: boolean;
 }
 
-const OpponentSelect: FunctionComponent<OpponentSelectProps> = ({values, onChange, opponentStrengths}) =>
-    <FormControl sx={{ m: 2, width: 250 }}>
+const OpponentSelect: FunctionComponent<OpponentSelectProps> = ({
+                                                                    values,
+                                                                    onChange,
+                                                                    opponentStrengths,
+                                                                    isMobile}) =>
+    <FormControl sx={{ m: 2, width: isMobile ? 400 : 250 }}>
         <InputLabel id="demo-multiple-checkbox-label">Opponents</InputLabel>
         <Select
             multiple

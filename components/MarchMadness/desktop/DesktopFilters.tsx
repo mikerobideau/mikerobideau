@@ -1,6 +1,6 @@
 import {FunctionComponent} from "react";
 
-import {TeamAutocomplete} from "@/components/MarchMadness/TeamAutocomplete";
+import {TeamAutocomplete} from "@/components/MarchMadness/shared/TeamAutocomplete";
 import {
     Checkbox, Container,
     FormControl,
@@ -15,9 +15,9 @@ import {
 import {Team} from "@/components/MarchMadness/Model";
 
 import styles from '@/styles/MarchMadness.module.css';
-import OpponentSelect from "@/components/MarchMadness/OpponentSelect";
+import OpponentSelect from "@/components/MarchMadness/shared/OpponentSelect";
 
-interface FilterProps {
+interface DesktopFilterProps {
     teams: Team[];
     team1: Team;
     team2: Team;
@@ -28,7 +28,7 @@ interface FilterProps {
     onChangeOpponentStrengths: (event: SelectChangeEvent) => void;
 }
 
-export const Filters: FunctionComponent<FilterProps> = ({
+export const DesktopFilters: FunctionComponent<DesktopFilterProps> = ({
                                                             teams,
                                                             team1,
                                                             team2,
@@ -39,30 +39,17 @@ export const Filters: FunctionComponent<FilterProps> = ({
                                                             onChangeOpponentStrengths}) => {
     return (
         <Container>
-            <Hidden smDown>
-                <div className={styles.filters}>
-                    <div className={styles.filtersInner}>
-                        <TeamAutocomplete label="Team 1" value={team1} onChange={onChangeTeam1} teams={teams} />
-                        <TeamAutocomplete label="Team 2" value={team2} onChange={onChangeTeam2} teams={teams} />
-                        <OpponentSelect values={selectedOpponentStrengths}
-                                        onChange={onChangeOpponentStrengths}
-                                        opponentStrengths={opponentStrengths} />
-                    </div>
-                </div>
-            </Hidden>
-
-            <Hidden smUp>
-                <div className={styles.filtersMobile}>
+            <div className={styles.filters}>
+                <div className={styles.filtersInner}>
                     <TeamAutocomplete label="Team 1" value={team1} onChange={onChangeTeam1} teams={teams} />
                     <TeamAutocomplete label="Team 2" value={team2} onChange={onChangeTeam2} teams={teams} />
                     <OpponentSelect values={selectedOpponentStrengths}
                                     onChange={onChangeOpponentStrengths}
                                     opponentStrengths={opponentStrengths} />
                 </div>
-            </Hidden>
-
+            </div>
         </Container>
     )
 }
 
-export default Filters;
+export default DesktopFilters;

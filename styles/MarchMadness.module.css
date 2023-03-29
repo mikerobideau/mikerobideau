@@ -1,4 +1,12 @@
 
+/*
+General
+ */
+
+.flex {
+  display: flex;
+}
+
 /*Main*/
 .marchMadness {
   font-family: AtlasGrotesk-Medium, "Helvetica Neue", Helvetica;
@@ -38,6 +46,11 @@
   font-family: "Helvetica Neue";
 }
 
+.mobileNavBrand {
+  margin-top: 1rem;
+  display: inline;
+}
+
 /*Filters*/
 
 .filters {
@@ -49,9 +62,26 @@
   border-bottom: 1px solid black;
 }
 
-.filtersMobile {
+.mobileFilters {
+  margin-top: 1rem;
+}
+
+.mobileFiltersHeaderContainer {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+}
+
+.mobileFiltersHeader {
+  text-align: center;
+}
+
+.mobileFilterOptionContainer {
+  padding: 1rem;
+}
+
+.mobileFiltersDoneContainer {
+  text-align: center;
+  margin-bottom: 1rem;
 }
 
 /*Dashboard*/
@@ -63,19 +93,19 @@
   margin: 3rem 0;
 }
 
-.winPct {
-  z-index: 1;
-  font-size: 3rem;
-  line-height: 8rem;
-  border: 2px solid lightgrey;
+.winPctContainer {
+  display: inline-flex;
+  margin: 0;
+  padding: 0;
 }
 
-.winPctLarge {
+.winPctContainerDesktop {
   width: 400px;
 }
 
-.winPctSmall {
+.winPctContainerMobile {
   width: 200px;
+  height: 50px;
 }
 
 .winPctFill {
@@ -85,28 +115,31 @@
   padding: 0;
 }
 
-.winPctContainer {
-  display: inline-flex;
-  margin: 0;
-  padding: 0;
-}
-
-.winPctContainerLarge {
+.winPctFillDesktop {
   width: 400px;
 }
 
-.winPctContainerSmall {
+.winPctFillMobile {
   width: 200px;
+  height: 50px;
 }
 
-.mobileWinPctContainer {
-  display: inline-flex;
-  margin-top: 2rem;
+.winPctText {
+  z-index: 1;
+  font-size: 3em;
+  line-height: 8rem;
+  border: 2px solid lightgrey;
 }
 
-.mobileDashboardContainer {
-  margin-bottom: 3rem;
+.winPctTextDesktop {
+  width: 400px;
 }
+
+.winPctTextMobile {
+  width: 200px;
+  display: none;
+}
+
 
 .vs {
   font-size: 1.6rem;
@@ -118,6 +151,10 @@
 .teamLogoLarge {
   vertical-align: baseline;
   margin: 0 1.5rem;
+}
+
+.teamLogoMobile {
+  margin-right: 0;
 }
 
 /*Team Autocomplete*/
@@ -153,7 +190,37 @@
   font-size: 1rem;
 }
 
-.teamLogo {
-  margin-right: 1rem;
+
+
+/*
+Game Card
+ */
+
+.gameCardContent {
+  display: flex;
+  justify-content: space-around;
 }
 
+.gameCardGrade {
+  font-size: 5em;
+}
+
+.gameCardSection {
+  padding: 1rem;
+}
+
+.gameCardTeamScore {
+  text-align: center;
+}
+
+.gameCardTeamName {
+  text-align: center;
+}
+
+.gameCardTeamStrength {
+  text-transform: lowercase;
+}
+
+.gameCardSummary {
+  padding: 1rem;
+}

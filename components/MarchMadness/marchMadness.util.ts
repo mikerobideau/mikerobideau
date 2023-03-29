@@ -1,4 +1,4 @@
-import {Score, ScreenSize, Team} from "@/components/MarchMadness/Model";
+import {Score, ScreenSize, SimulationResult, Team} from "@/components/MarchMadness/Model";
 
 export const getRecord = (scores: Score[]): number[] => {
     const wins = scores.filter(({team1_score, team2_score}) =>
@@ -50,9 +50,10 @@ export const getFilteredScores = (scores: Score[] | undefined, selectedOpponentS
 export const getWinPctColor = (winPct: number | undefined) =>
     winPct && Math.round(winPct) >= 50 ? '#4CAF50' : '#E57373';
 
-export const getWinPctWidth = (winPct: number | undefined, size: ScreenSize) => {
-    const maxSize = isLargeScreenSize(size) ? 400 : 200;
+export const getWinPctWidth = (winPct: number | undefined, isMobile: boolean) => {
+    const maxSize = isMobile ? 200 : 400;
     return winPct ? Math.round(winPct) / 100 * maxSize : 0;
 }
 
 export const isLargeScreenSize = (size: ScreenSize) => ['xl', 'lg'].includes(size);
+
